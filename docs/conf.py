@@ -24,7 +24,7 @@ sys.path.append(os.path.abspath('./demo/'))
 import sphinx_rtd_theme
 from sphinx.locale import _
 
-project = u'Read the Docs Sphinx Theme'
+project = u'Cilium Docs'
 slug = re.sub(r'\W+', '-', project.lower())
 version = '0.5.0rc2'
 release = '0.5.0rc2'
@@ -39,6 +39,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinxcontrib.httpdomain',
     'sphinx_rtd_theme',
+    'sphinx_copybutton',
 ]
 
 templates_path = ['_templates']
@@ -73,7 +74,7 @@ if not 'READTHEDOCS' in os.environ:
         range(1, 100)
     ))
 
-html_logo = "demo/static/logo-wordmark-light.svg"
+html_logo = "demo/static/cilium-logo.svg"
 html_show_sourcelink = True
 
 htmlhelp_basename = slug
