@@ -120,6 +120,36 @@
 </head>
 
 <body class="wy-body-for-nav">
+  <header class="wy-header">
+      <div class="wy-header-left">
+          {# the logo helper function was removed in Sphinx 6 and deprecated since Sphinx 4 #}
+          {# the master_doc variable was renamed to root_doc in Sphinx 4 (master_doc still exists in later Sphinx versions) #}
+          {%- set _logo_url = logo_url|default(pathto('_static/' + (logo or ""), 1)) %}
+          {%- set _root_doc = root_doc|default(master_doc) %}
+          <a href="{{ pathto(_root_doc) }}"{% if not theme_logo_only %} class="wy-header-logo-wrapper icon icon-home"{% else %} class="wy-header-logo-wrapper"{% endif %}>
+            {% if not theme_logo_only %}{{ project }}{% endif %}
+            {%- if logo or logo_url %}
+              <img src="{{ _logo_url }}" class="logo" alt="{{ _('Logo') }}"/>
+            {%- endif %}
+          </a>
+
+        <span class="wy-github-stars">
+          <iframe src="https://ghbtns.com/github-btn.html?user=cilium&repo=cilium&type=star&count=true&size=large"
+            frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+        </span>
+    </div>
+
+    <nav class="wy-main-nav">
+      <input name="wy-main-nav-checkbox" id="wy-main-nav-checkbox" class="wy-main-nav-checkbox" type="checkbox">
+      <label for="wy-main-nav-checkbox" class="wy-main-nav-toggle">Menu</label>
+      <ul id="#wy-main-nav-menu" class="wy-main-nav-menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
 
   {%- block extrabody %} {% endblock %}
   <div class="wy-grid-for-nav">
@@ -129,27 +159,16 @@
         <div class="wy-side-nav-search" {% if theme_style_nav_header_background %} style="background: {{theme_style_nav_header_background}}" {% endif %}>
           {%- block sidebartitle %}
 
-          {# the logo helper function was removed in Sphinx 6 and deprecated since Sphinx 4 #}
-          {# the master_doc variable was renamed to root_doc in Sphinx 4 (master_doc still exists in later Sphinx versions) #}
-          {%- set _logo_url = logo_url|default(pathto('_static/' + (logo or ""), 1)) %}
-          {%- set _root_doc = root_doc|default(master_doc) %}
-          <a href="{{ pathto(_root_doc) }}"{% if not theme_logo_only %} class="icon icon-home"{% endif %}>
-            {% if not theme_logo_only %}{{ project }}{% endif %}
-            {%- if logo or logo_url %}
-              <img src="{{ _logo_url }}" class="logo" alt="{{ _('Logo') }}"/>
-            {%- endif %}
-          </a>
-
           {%- if theme_display_version %}
             {%- set nav_version = version %}
             {%- if READTHEDOCS and current_version %}
               {%- set nav_version = current_version %}
             {%- endif %}
-            {%- if nav_version %}
+            <!-- {%- if nav_version %}
               <div class="version">
                 {{ nav_version }}
               </div>
-            {%- endif %}
+            {%- endif %} -->
           {%- endif %}
 
           {%- include "searchbox.html" %}
