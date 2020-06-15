@@ -46,6 +46,10 @@ if sys.version_info < (3, 0):
 else:
     tags.add("python3")
 
+html_static_path = ['_static/']
+html_css_files = ['css/docsearch.min.css']
+html_js_files = ['js/docsearch.min.js']
+
 intersphinx_mapping = {
     'rtd': ('https://docs.readthedocs.io/en/stable/', None),
     'rtd-dev': ('https://dev.readthedocs.io/en/stable/', None),
@@ -60,8 +64,7 @@ html_theme_options = {
 html_context = {}
 
 if not 'READTHEDOCS' in os.environ:
-    html_static_path = ['_static/']
-    html_js_files = ['debug.js']
+    html_js_files.append('debug.js')
 
     # Add fake versions for local QA of the menu
     html_context['test_versions'] = list(map(
