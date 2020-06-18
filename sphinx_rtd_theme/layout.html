@@ -36,6 +36,9 @@
     {{ css_tag(cssfile) }}
   {%- endfor -%}
 
+  {# DOCSEARCH STYLES #}
+  <link rel="stylesheet" href="{{ pathto('_static/css/docsearch.min.css', 1) }}" type="text/css" />
+
   {#- FAVICON
       favicon_url is the only context var necessary since Sphinx 4.
       In Sphinx<4, we use favicon but need to prepend path info.
@@ -263,6 +266,7 @@
 
   {%- block footer %} {% endblock %}
 
+  <script type="text/javascript" src="{{ pathto('_static/js/docsearch.min.js', 1) }}"></script>
   <script>
     docsearch({
       indexName: 'cilium_docs',
@@ -270,6 +274,9 @@
       appId: 'QWB13UU32F', 
       inputSelector: '#rtd-search-form input, #flyout-search-form input',
       debug: false,
+      algoliaOptions: {
+        'facetFilters': ['version:{{ current_version }}']
+      }
     });
   </script>
 
